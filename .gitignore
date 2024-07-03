@@ -1,0 +1,25 @@
+# 排除 ConsoleA.77ce902c 文件夹
+ConsoleA.77ce902c/
+
+# 排除 x64 文件夹
+x64/
+
+# 排除 .vs 文件夹
+.vs/
+
+# 排除所有 .suo 文件
+*.suo
+
+# 排除所有 .user 文件
+*.user
+
+# 排除 bin 和 obj 文件夹
+bin/
+obj/
+
+# 排除所有 .log 文件
+*.log
+
+# 排除包文件夹
+packages/
+
