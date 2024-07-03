@@ -8,6 +8,7 @@ extern char start_char;
 extern int cnt_nonT;
 extern int cnt_term;
 extern int lines;
+extern string title;
 //所有的非终结符
 extern vector<char> nonT;
 //所有的终结符
@@ -97,5 +98,57 @@ void printTable() {
 	}
 }
 
+void saveAllInfoToFile() {
+	// 打开或创建文件
+	std::ofstream outFile("grammar_analysis_info.txt", std::ios::out | std::ios::app);
+	if (!outFile.is_open()) {
+		std::cerr << "无法打开或创建文件 grammar_analysis_info.txt" << std::endl;
+		return;
+	}
+	outFile << "标题：" << title << endl;
+	// 写入终结符数量和列表
+	outFile << "终结符数量：" << cnt_term << " 分别为:{";
+	for (char c : term) {
+		outFile << " " << c;
+	}
+	outFile << " }\n";
+
+	// 写入非终结符数量和列表
+	outFile << "非终结符数量：" << cnt_nonT << " 分别为:{";
+	for (char c : nonT) {
+		outFile << " " << c;
+	}
+	outFile << " }\n\n";
+
+	// 写入预测分析表
+	outFile << "预测分析表：\n";
+	int output_width = 10;
+	outFile << std::setw(output_width) << " ";
+	for (char char_term : term) {
+		if (char_term == '@') continue;
+		outFile << std::setw(output_width) << char_term;
+	}
+	outFile << "\n";
+	for (int i = 0; i < cnt_nonT; i++) {
+		outFile << std::setw(output_width) << nonT[i];
+		for (int j = 0; j < cnt_term; j++) {
+			if (term[j] == '@') continue;
+			if (table[i][j] == -1)
+				outFile << std::setw(output_width) << " ";
+			else
+				outFile << std::setw(output_width) << grammar[table[i][j]];
+		}
+		outFile << endl;
+	}
+	outFile << endl;
+	outFile << endl;
+	outFile << endl;
+	outFile.close();
+}
+
+void inputTitle() {
+	cout << "请输入标题：";
+	cin >> title;
+}
 
 

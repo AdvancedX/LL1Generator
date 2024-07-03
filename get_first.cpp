@@ -74,20 +74,3 @@ void getFirstP()
 			add_unique_item(firstP[i], '@');
 	}
 }
-void saveFirstSets() {
-	ofstream outFile("first_sets.txt");
-	if (!outFile.is_open()) {
-		cerr << "无法打开文件 first_sets.txt" << endl;
-		return;
-	}
-
-	for (int i = 0; i < nonT.size(); ++i) {
-		outFile << nonT[i] << ": ";
-		for (char c : firstN[i]) {
-			outFile << c << " ";
-		}
-		outFile << "\n";
-	}
-
-	outFile.close();
-}

@@ -1,6 +1,7 @@
 #include "common_header.h"
 using namespace std;
-
+//保存的文件标题
+string title;
 //产生式存放数组（不含公共左因子、不含左递归）
 string grammar[maxnum];
 //开始符号, 默认第一个文法的第一个字母为开始符号

@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <cstring>
-#include<fstream>
+#include <fstream>
 #include <string>
 #include <queue>
 #include <set>
@@ -19,6 +19,8 @@
 #include <list>
 #include <cctype>
 #include <functional>
+#include <iomanip>
+
 #define maxnum 50
 #define Terminator 1
 #define NonTerminator 0
@@ -52,5 +54,6 @@ void printAllFirstN();
 void printAllFirstP();
 void printAllFollow();
 void printTable();
-
+void saveAllInfoToFile();
+void inputTitle();
 #pragma once
