@@ -6,3 +6,12 @@ B->@
 E→E+T|E-T|T
 T→T*F|T/F|F
 F→(E)|id
+
+E->E+T
+E->E-T
+E->T
+T->T*F
+T->T/E
+T->F
+F->(E)
+F->i

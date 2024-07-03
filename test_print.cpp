@@ -8,7 +8,6 @@ extern char start_char;
 extern int cnt_nonT;
 extern int cnt_term;
 extern int lines;
-extern string title;
 //所有的非终结符
 extern vector<char> nonT;
 //所有的终结符
@@ -105,7 +104,10 @@ void saveAllInfoToFile() {
 		std::cerr << "无法打开或创建文件 grammar_analysis_info.txt" << std::endl;
 		return;
 	}
-	outFile << "标题：" << title << endl;
+	string tt;
+	cout << "请输入标题：";
+	cin >> tt;
+	outFile << "标题：" << tt << endl;
 	// 写入终结符数量和列表
 	outFile << "终结符数量：" << cnt_term << " 分别为:{";
 	for (char c : term) {
@@ -144,11 +146,6 @@ void saveAllInfoToFile() {
 	outFile << endl;
 	outFile << endl;
 	outFile.close();
-}
-
-void inputTitle() {
-	cout << "请输入标题：";
-	cin >> title;
 }
 
 

@@ -26,6 +26,7 @@ void getfirst(char NonTer)
 				keep = false;
 			}
 			else { // 非终结符
+				//把这个非终结符的 first 收了
 				keep = false;
 				getfirst(c); // 收之前先递归求解一下
 				for (char b : firstN[indexOfNonT(c)]) {

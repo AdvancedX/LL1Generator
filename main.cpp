@@ -3,10 +3,10 @@
 using namespace std;
 char sentence[bufsize];
 int main() {
-	inputTitle();
 	cout << "请输入文法，每行一个，在行首按 Ctrl+Z 结束。第一个文法的首字符将被视为开始符号" << endl;
-	input_grammer();
+	input_grammar();
 	pick_up();
+	eliminateLeftRecursion();
 	getFirstN();
 	getFirstP();
 	getFollow();

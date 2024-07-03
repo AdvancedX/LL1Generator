@@ -40,14 +40,13 @@ int typeOf(char x);
 
 void analyze(const char* str, int len = -1);
 
-void input_grammer();
+void input_grammar();
 void pick_up();
 void getFirstN();
 void getFirstP();
 void getFollow();
-void generateTable();
-
-
+void generateTable(); 
+void eliminateLeftRecursion();
 void printAllTerminator();
 void printAllNonTerminator();
 void printAllFirstN();
