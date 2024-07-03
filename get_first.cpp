@@ -26,7 +26,6 @@ void getfirst(char NonTer)
 				keep = false;
 			}
 			else { // 非终结符
-				//把这个非终结符的 first 收了
 				keep = false;
 				getfirst(c); // 收之前先递归求解一下
 				for (char b : firstN[indexOfNonT(c)]) {
@@ -74,4 +73,21 @@ void getFirstP()
 		if (keep)
 			add_unique_item(firstP[i], '@');
 	}
+}
+void saveFirstSets() {
+	ofstream outFile("first_sets.txt");
+	if (!outFile.is_open()) {
+		cerr << "无法打开文件 first_sets.txt" << endl;
+		return;
+	}
+
+	for (int i = 0; i < nonT.size(); ++i) {
+		outFile << nonT[i] << ": ";
+		for (char c : firstN[i]) {
+			outFile << c << " ";
+		}
+		outFile << "\n";
+	}
+
+	outFile.close();
 }

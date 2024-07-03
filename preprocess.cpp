@@ -23,8 +23,17 @@ B->@
 */
 void input_grammer() {
 	lines = 0;
-	while (cin >> grammar[lines]){
-		lines++;//每读取一行加一
+	string line;
+	while (getline(cin, line)) {
+		string processedLine;
+		for (char c : line) {
+			if (c != ' ') { // 如果当前字符不是空格，则添加到处理后的字符串中
+				processedLine += c;
+			}
+		}
+		if (!processedLine.empty()) {
+			grammar[lines++] = processedLine; // 保存处理后的产生式
+		}
 	}
 	cin.clear();
 }
