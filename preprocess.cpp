@@ -13,6 +13,7 @@ extern vector<char> nonT;
 //所有的终结符
 extern vector<char> term;
 
+//输入文法，保存到 grammar 中，删除空格
 void input_grammar() {
     lines = 0;
     string line;
@@ -31,7 +32,9 @@ void input_grammar() {
 }
 // 提取非终结符 和 终结符, 保存到 nonT 和 term 中
 void pick_up() {
+	// 首先提取非终结符
     bool vis[256] = { 0 };
+	// 遍历所有产生式，提取非终结符
     for (int i = 0; i < lines; i++) {
         char cur = grammar[i][0];
         if (!vis[(int)cur]) {
@@ -50,6 +53,7 @@ void pick_up() {
             }
         }
     }
+	// 添加 $
     term.push_back('$');
     cnt_nonT = nonT.size();
     cnt_term = term.size();
@@ -58,13 +62,15 @@ void pick_up() {
 }
 // 消除左递归
 void eliminateLeftRecursion() {
+	// 新的文法,用于存放消除左递归后的文法
     vector<string> new_grammar;
     bool has_left_recursion = false;
-
+	// 遍历所有非终结符，消除左递归
     for (int i = 0; i < cnt_nonT; i++) {
         char A = nonT[i];
         vector<string> alpha, beta;
         for (int j = 0; j < lines; j++) {
+			//如果产生式的左部是 A，那么就要消除左递归
             if (grammar[j][0] == A) {
                 string rhs = grammar[j].substr(3);
                 if (rhs[0] == A) {
@@ -75,6 +81,7 @@ void eliminateLeftRecursion() {
                 }
             }
         }
+		// 如果有左递归，那么就要消除
         if (!alpha.empty()) {
             has_left_recursion = true;
             char new_nonT = A + ('`' - 'A');  // 新的非终结符
@@ -86,6 +93,7 @@ void eliminateLeftRecursion() {
             }
             new_grammar.push_back(string(1, new_nonT) + "->@");
         }
+		// 如果没有左递归，那么就直接添加
         else {
             for (int j = 0; j < lines; j++) {
                 if (grammar[j][0] == A) {
@@ -94,7 +102,7 @@ void eliminateLeftRecursion() {
             }
         }
     }
-
+	// 如果有左递归，那么就要更新文法
     if (has_left_recursion) {
         grammar->clear();
         lines = new_grammar.size();

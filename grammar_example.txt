@@ -1,6 +1,6 @@
-A->aBc
-A->d+
-B->cA
+A -> aBc
+A ->d+
+B- >cA
 B->@
 
 E→E+T|E-T|T

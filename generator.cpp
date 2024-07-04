@@ -16,10 +16,13 @@ extern int table[maxnum][maxnum];
 
 //生成预测分析表
 void generateTable() {
+	// 初始化分析表
 	memset(table, -1, sizeof table);
+	// 遍历每一个产生式
 	for (int k = 0; k < lines; k++) {
 		bool hasEmpty = false; // 标记 firstP[k] 中是否 含有 '@'
 		int i = indexOfNonT(grammar[k][0]); // 第 k 个产生式的 开头非终结符 在 nonT 中下标
+		// 遍历 firstP[k] 中的每一个字符
 		for (char c : firstP[k]) {
 			if (c == '@') { // 分析表中不用添加 @ 这一列，因为用不到
 				hasEmpty = true;
